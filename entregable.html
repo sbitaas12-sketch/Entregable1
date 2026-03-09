@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Farmacia Villa Rica</title>
+<style>
+body{
+font-family: Arial;
+background:#ebf3579e;
+text-align:center;
+}
+.medicamentos{
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 20px;
+}
+.med{
+    text-align: center;
+}
+.med img{
+    width: 400px;
+    height: 300px;
+}
+.resultados{
+margin-top:40px;
+background:white;
+width:300px;
+margin-left:auto;
+margin-right:auto;
+padding: 20px;
+border-radius:10px;
+box-shadow:0px 0px 10px rgba(0,0,0,0.1);
+}
+.resultados input{
+margin:5px;
+padding:5px;
+width:120px;
+}
+</style>
+
+</head>
+<body>
+
+    <img src="img/logo.webp" alt="" width="1000">
+<h1>FARMACIA VILLA RICA</h1>
+<img src="img/fondo.jpg" alt="" width="1150">
+</div>
+<br>
+<div class="medicamentos">
+
+  <div class="med">
+    <img src="img/paracetamol.webp" alt="Paracetamol">
+    <p>PARACETAMOL</p>
+    <input type="checkbox" id="med1"> Seleccionar
+    <br>
+    <br>Cantidad: <input type="number" id="cant1" min="1">
+  </div>
+
+  <div class="med">
+    <img src="img/ibuprofeno.jpg" alt="Ibuprofeno">
+    <p>IBUPROFENO</p>
+    <input type="checkbox" id="med2"> Seleccionar
+    <br>
+    <br>Cantidad: <input type="number" id="cant2" min="1">
+  </div>
+
+  <div class="med">
+    <img src="img/amoxicilina.jpg" alt="Amoxicilina">
+    <p>AMOXICILINA</p>
+    <input type="checkbox" id="med3"> Seleccionar
+    <br>
+   <br>Cantidad: <input type="number" id="cant3" min="1">
+  </div>
+
+</div>
+
+<div class="resultados">
+
+<label>Subtotal:</label>
+<input type="text" id="subtotal"><br>
+
+<label>Descuento:</label>
+<input type="text" id="descuento"><br>
+
+<label>Total:</label>
+<input type="text" id="total"><br>
+
+<br><div class="botones">
+<button onclick="calcular()">Calcular</button>
+<button onclick="nuevo()">Nuevo</button>
+<button onclick="salir()">Salir</button>
+</div>
+
+</div>
+
+<script>
+
+function calcular(){
+
+var subtotal = 0;
+var descuento = 0;
+var total = 0;
+
+if(document.getElementById("med1").checked){
+var c1 = document.getElementById("cant1").value;
+subtotal = subtotal + (c1 * 5);
+}
+
+if(document.getElementById("med2").checked){
+var c2 = document.getElementById("cant2").value;
+subtotal = subtotal + (c2 * 8);
+}
+
+if(document.getElementById("med3").checked){
+var c3 = document.getElementById("cant3").value;
+subtotal = subtotal + (c3 * 12);
+}
+
+if(subtotal < 50){
+descuento = 0;
+}
+else if(subtotal <= 200){
+descuento = subtotal * 0.08;
+}
+else if(subtotal <= 250){
+descuento = subtotal * 0.10;
+}
+else if(subtotal <= 300){
+descuento = subtotal * 0.15;
+}
+else{
+descuento = subtotal * 0.20;
+}
+
+total = subtotal - descuento;
+
+document.getElementById("subtotal").value = subtotal;
+document.getElementById("descuento").value = descuento;
+document.getElementById("total").value = total;
+
+}
+
+function nuevo(){
+
+document.getElementById("med1").checked = false;
+document.getElementById("med2").checked = false;
+document.getElementById("med3").checked = false;
+
+document.getElementById("cant1").value = "";
+document.getElementById("cant2").value = "";
+document.getElementById("cant3").value = "";
+
+document.getElementById("subtotal").value = "";
+document.getElementById("descuento").value = "";
+document.getElementById("total").value = "";
+
+}
+
+function salir(){
+alert("Gracias por usar el sistema de facturacion");
+}
+
+</script>
+
+</body>
+</html>
